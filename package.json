@@ -1,0 +1,24 @@
+{
+  "name": "parsons-systems",
+  "version": "1.0.0",
+  "description": "A training repository about systems:  JavaScript, HTML and CSS.",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "archiver": "^5.0.2",
+    "http-server": "^0.12.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChaiWithJai/parsons-systems.git"
+  },
+  "keywords": [],
+  "author": "Chai With Jai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChaiWithJai/parsons-systems/issues"
+  },
+  "homepage": "https://github.com/ChaiWithJai/parsons-systems#readme"
+}

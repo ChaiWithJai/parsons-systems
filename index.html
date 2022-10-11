@@ -1,22 +1,126 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <link href="/dist/output.css" rel="stylesheet">
+    <link href="/dist/output.css" rel="stylesheet" />
     <!-- Set Emoji as FavIcon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>"
+    />
     <title>Digital Immigrants</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body>
-    <main id="app">
-        <h1 class="text-3xl font-bold underline">Future Text</h1>
-        <p>
-            As we live, our hearts turn colder. Cause pain is what we go through as we become older. We get insulted by others, lose trust for those others. We get back stabbed by friends. It becomes harder for us to give others a hand. We get our heart broken by people we love, even that we give them all we have. Then we lose family over time. What else could rust the heart more over time? Blackgold.
-        </p>
-        <span>
-            Generated text via:  <a href="http://www.kanye-ipsum.com/">Kanye Ipsum</a>
-        </span>
+  <body class="bg-slate-100">
+    <nav class="py-4 md:py-8 shadow-sm bg-white px-8 xl:px-0 flex flex-col">
+      <span class="text-3xl font-bold active">🗺️ Digital Immigrants 🗺️</span>
+      <span class="text-sm italic"
+        >Damn, it feels good to be an immigrant!</span
+      >
+    </nav>
+    <main id="app" class="p-16">
+      <!-- START:  Title Component -->
+      <div
+        class="container border pb-2 rounded-lg shadow-sm border-gray-300 lg:max-w-5xl bg-white mx-auto"
+      >
+        <div
+          class="flex py-5 px-3 sm:py-6 sm:px-5 link__item bg-white rounded-t-lg"
+        >
+          <div class="flex items-center">
+            <div class="font-bold opacity-75"></div>
+            <div class="mx-3 cursor-pointer" title="Upvote">
+              <svg
+                class="w-4 h-3 fill-current text-red-500 hover:text-red-700 transition-colors duration-75"
+                viewBox="0 0 14 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.92383 0.692841L13.419 11.9428H0.428638L6.92383 0.692841Z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div class="link__main">
+            <div class="flex flex-col">
+              <div class="flex items-baseline mb-1 flex-wrap">
+                <h2
+                  class="mr-2 text-base sm:text-lg cursor-pointer"
+                  title="Test"
+                >
+                  Modi, Merkel, Jinping, Obama and Trump back Kanye West for
+                  President.
+                </h2>
+                <p class="text-sm">(www.axios.com)</p>
+              </div>
+              <div class="text-xs">
+                42069 pts by @DonaldTrump 22 minutes ago |
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="w-full flex flex-col p-8">
+          <textarea
+            name="comment"
+            id="comment"
+            class="px-6 py-4 border rounded-sm mt-5 w-full lg:max-w-lg outline-none focus:border focus:border-gray-600 null"
+            draggable="false"
+            placeholder="Enter your comment"
+            style="resize: none"
+          ></textarea
+          ><button
+            type="submit"
+            class="bg-red-500 text-sm text-white rounded-lg outline-none border-transparent md:max-w-xs text-left px-8 py-2 self-start transition-colors duration-75 hover:bg-red-600 mt-3"
+          >
+            add comment
+          </button>
+        </form>
+      </div>
+      <!-- END:  Title Component -->
+      <!-- START:  Comment Section -->
+      <div class="mt-8 mb-10">
+        <h2 class="text-sm md:text-lg text-gray-800">Comments</h2>
+        <div class="mt-5 pb-10">
+          <div
+            class="px-4 py-3 mt-3 shadow-sm bg-white flex flex-col w-full md:max-w-md rounded border-l border-red-500"
+          >
+            <div class="flex">
+              <p class="text-base text-gray-800">
+                @Oprah
+                <span class="text-xs text-gray-600">over 16 minutes ago</span>
+              </p>
+            </div>
+            <p class="text-sm mt-2 text-gray-700">
+              I will personally knock on doors for his campaign.
+            </p>
+          </div>
+          <div
+            class="px-4 py-3 mt-3 shadow-sm bg-white flex flex-col w-full md:max-w-md rounded border-l border-red-500"
+          >
+            <div class="flex">
+              <p class="text-base text-gray-800">
+                @Joe Biden
+                <span class="text-xs text-gray-600">over 10 minutes ago</span>
+              </p>
+            </div>
+            <p class="text-sm mt-2 text-gray-700">
+              Ye will unite this whole country and then the entire world.
+            </p>
+          </div>
+          <div
+            class="px-4 py-3 mt-3 shadow-sm bg-white flex flex-col w-full md:max-w-md rounded border-l border-red-500"
+          >
+            <div class="flex">
+              <p class="text-base text-gray-800">
+                @champagnepapi
+                <span class="text-xs text-gray-600">over 3 minutes ago</span>
+              </p>
+            </div>
+            <p class="text-sm mt-2 text-gray-700">I wish I could be him.</p>
+          </div>
+        </div>
+      </div>
+      <!-- END:  Comment Section -->
     </main>
   </body>
 </html>

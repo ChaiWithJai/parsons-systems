@@ -1,24 +1,42 @@
 import { createDOMElement } from "../helpers/createDOMElement.js";
+import { data } from "../store/store.js"
+import { CommentCard } from "./CommentList.js";
 
 /** {?HTMLElement} The root element for this component. */
 let rootEl;
+
+data.onChange(handleDataChange);
+
+/**
+ * @param {string} key
+ */
+function handleDataChange(key) {
+  const prevRootEl = rootEl;
+  if (!prevRootEl) return;
+  const newMainCard = MainCard();
+  const formEl = CommentForm();
+  newMainCard.appendChild(formEl);
+
+  prevRootEl.replaceWith(newMainCard);
+}
 
 /**
  * Renders the main card displaying the post and option to comment.
  * @return {!HTMLElement}
  */
 export function MainCard() {
-  // TODO:  Add Loading / Error State
-  const isLoading = false;
+  const isLoading = !data.get('postLoaded');
+  const post = data.get('post');
   rootEl = createDOMElement(`<main id="main-card"></main>`);
-  if (isLoading) {
-    rootEl.innerHTML = "ADD MARKUP HERE!";
+  if (isLoading && !post) {
+    rootEl.innerHTML = '<div id="title">Loading</div>';
   } else {
     rootEl = createDOMElement(`
       <div
       class="container border pb-2 rounded-lg shadow-sm border-gray-300 lg:max-w-5xl bg-white mx-auto"
       >
         <div
+          id="title"
           class="flex py-5 px-3 sm:py-6 sm:px-5 link__item bg-white rounded-t-lg"
         >
           <div class="flex items-center">
@@ -43,35 +61,53 @@ export function MainCard() {
                 class="mr-2 text-base sm:text-lg cursor-pointer"
                 title="Test"
               >
-                Modi, Merkel, Jinping, Obama and Trump back Kanye West for
-                President.
+                ${post.title}
               </h2>
               <p class="text-sm">(www.axios.com)</p>
             </div>
             <div class="text-xs">
-              42069 pts by @DonaldTrump 22 minutes ago |
+              ${post.points} pts by ${post.author} 22 minutes ago |
             </div>
           </div>
         </div>
       </div>
-      <form class="w-full flex flex-col p-8">
-        <textarea
-          name="comment"
-          id="comment"
-          class="px-6 py-4 border rounded-sm mt-5 w-full lg:max-w-lg outline-none focus:border focus:border-gray-600 null"
-          draggable="false"
-          placeholder="Enter your comment"
-          style="resize: none"
-        ></textarea
-        ><button
-          type="submit"
-          class="bg-red-500 text-sm text-white rounded-lg outline-none border-transparent md:max-w-xs text-left px-8 py-2 self-start transition-colors duration-75 hover:bg-red-600 mt-3"
-        >
-          add comment
-        </button>
-      </form>
     </div>
     `);
   }
+
   return rootEl;
 }
+
+function CommentForm() {
+  let comment = "";
+  const form = createDOMElement(`
+  <form class="w-full flex flex-col p-8">
+    <textarea
+      name="comment"
+      id="comment"
+      class="px-6 py-4 border rounded-sm mt-5 w-full lg:max-w-lg outline-none focus:border focus:border-gray-600 null"
+      draggable="false"
+      placeholder="Enter your comment"
+      style="resize: none"
+    >${comment}</textarea>
+    <button
+      type="submit"
+      class="bg-red-500 text-sm text-white rounded-lg outline-none border-transparent md:max-w-xs text-left px-8 py-2 self-start transition-colors duration-75 hover:bg-red-600 mt-3"
+    >
+      add comment
+    </button>
+  </form>
+  `)
+  form.addEventListener('submit', function userTyping(e) {
+    e.preventDefault();
+    const userInput = [...e.target.children][0].value;
+    const commentSection = document.querySelector('#comment-section');
+    const userComment = {comment: userInput, author: 'Pib Bib'};
+    const NewUserComment = CommentCard(userComment);
+    commentSection.appendChild(NewUserComment);
+    console.log('user is submitting a comment\n\n', userInput);
+    
+    e.target.children[0].value = '';
+  });
+  return form;
+};

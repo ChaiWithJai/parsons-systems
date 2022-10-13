@@ -1,6 +1,7 @@
 import { createDOMElement } from "./helpers/createDOMElement.js";
 import { MainCard } from "./components/MainCard.js";
 import { CommentList } from "./components/CommentList.js";
+import { initializePost } from "./controller/post.js";
 
 const rootEl = document.getElementById("app");
 
@@ -9,7 +10,8 @@ refreshApp();
 // Re-render the app when the url changes.
 window.addEventListener("popstate", refreshApp);
 
-// TODO:  Add Data Loading Logic!
+// Load the post data
+initializePost();
 
 /** Renders a fresh copy of the app and inserts it into the DOM. */
 function refreshApp() {
@@ -24,6 +26,7 @@ function refreshApp() {
 function app() {
   // TODO:  Add Router Logic
   const postId = new URL(location.href).searchParams.get("post");
+  const appBody = AppBody();
   if (postId) {
     // Migrate MainCard and Comments here
     // after main page list is created
@@ -31,16 +34,16 @@ function app() {
     rootEl.appendChild(NavHeader());
 
     // APP BODY
-    const appBody = rootEl.appendChild(AppBody())
+    rootEl.appendChild(appBody)
     appBody.appendChild(MainCard());
     appBody.appendChild(CommentList());
   }
-  return el;
+  return appBody;
 }
 
 function AppBody() {
   return createDOMElement(`
-    <main id="main-card" class="p-16">
+    <main id="main-card" class="p-16"></main>
   `)
 }
 

@@ -33,6 +33,15 @@ app.post("/posts", async function (req, res) {
   }
 });
 
+app.post("/comments", async function (req, res) {
+  try {
+    const comment = await Comment.create({ author: req.body.author, comment: req.body.comment, PostId: req.body.PostId });
+    res.status(201).send(comment);
+  } catch (err) {
+    res.send(`Error: ${err.message}`);
+  }
+});
+
 async function init() {
   if (require.main === module) {
     try {

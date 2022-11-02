@@ -22,7 +22,7 @@ function handleDataChange(key) {
  */
 export function CommentList() {
   const isLoading = !data.get('postLoaded');
-  const comments = data.get('post')?.comments;
+  const comments = data.get('post')?.Comments;
   rootEl = createDOMElement(`
     <div id="comment-list" class="mt-8 mb-10">
       <h2 class="text-sm md:text-lg text-gray-800">Comments</h2>

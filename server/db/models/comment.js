@@ -3,25 +3,31 @@ const { db } = require("../");
 
 const tableName = "comments";
 
-class Comment extends Model {
-    title;
-    author;
-    url;
-    points;
-}
+class Comment extends Model {}
 
 Comment.init(
-    {
-        comment: {
-            type: DataTypes.STRING,
-        },
-        author: {
-            type: DataTypes.STRING,
-            unique: false,
-            allowNull: false,
-        },
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
-    { sequelize: db, tableName }
-    );
-    
+    comment: {
+      type: DataTypes.STRING,
+    },
+    author: {
+      type: DataTypes.STRING,
+    },
+  },
+  { sequelize: db, tableName }
+);
+
+Comment.prototype.create = async (comment) => {
+  try {
+    return Comment.create(comment);
+  } catch (err) {
+    throw new Error(`Error:  ${err.message}`);
+  }
+};
+
 module.exports = { Comment };

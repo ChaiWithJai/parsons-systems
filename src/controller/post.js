@@ -32,7 +32,7 @@ export async function initializePost() {
  */
 async function loadPost() {
   // Fetch from this API assets/posts/1.json
-  const data = await fetch("../../assets/posts/1.json");
+  const data = await fetch("http://localhost:8080/posts/1");
   // Convert to JSON
   return data.json();
 }

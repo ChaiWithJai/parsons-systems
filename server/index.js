@@ -2,12 +2,16 @@ const express = require("express");
 const { db } = require("./db");
 const { Post } = require("./db/models/post");
 const { Comment } = require("./db/models/comment");
+const cors = require("cors");
+
 
 const app = express();
 const PORT = 8080;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(cors());
 
 app.get("/posts/:id", async function (req, res) {
   try {

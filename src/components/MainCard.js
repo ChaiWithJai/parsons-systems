@@ -102,10 +102,21 @@ function CommentForm() {
     e.preventDefault();
     const userInput = [...e.target.children][0].value;
     const commentSection = document.querySelector('#comment-section');
-    const userComment = {comment: userInput, author: 'Pib Bib'};
+    const postId = data.get('post').id
+    const userComment = {comment: userInput, author: 'Pib Bib', PostId: postId};
+    
+    // Do not create waterfall request by using await
+    fetch('http://localhost:8080/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userComment)
+    });
+
+    // Weak optimistic rendering logic
     const NewUserComment = CommentCard(userComment);
     commentSection.appendChild(NewUserComment);
-    console.log('user is submitting a comment\n\n', userInput);
     
     e.target.children[0].value = '';
   });

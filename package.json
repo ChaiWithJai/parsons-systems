@@ -4,7 +4,8 @@
   "description": "A training repository about systems:  JavaScript, HTML and CSS.",
   "main": "index.js",
   "scripts": {
-    "start": "http-server -p 8080 -c-1"
+    "start": "http-server -p 8080 -c-1",
+    "server": "node server/index.js"
   },
   "devDependencies": {
     "archiver": "^5.0.2",
